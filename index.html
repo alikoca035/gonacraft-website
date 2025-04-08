@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GonaCraft Sunucusu</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <h1>GonaCraft</h1>
+    <p>Sunucumuza hoş geldiniz! Hayatta kal, inşa et ve keşfet!</p>
+    <p><strong>IP:</strong> play.gonacraft.com | <strong>Sürüm:</strong> 1.19.4</p>
+    <a href="https://discord.gg/yourdiscord" class="discord-button">Discord Sunucumuza Katıl</a>
+  </header>
+
+  <section class="status-section">
+    <div id="server-status" class="status-box">
+      <h2>Sunucu Durumu</h2>
+      <p id="status-text">Yükleniyor...</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Oyuncular</h2>
+    <ul class="player-list">
+      <li>ImInsane</li>
+      <li>Crazy Killer</li>
+      <li>The Dark Hornet</li>
+      <li>Dead Killer</li>
+      <li>Master Mafia</li>
+      <li>Perfect Smoker</li>
+      <li>Heartless Alchoholic</li>
+      <li>Noob Nitesh</li>
+      <li>Dazzling Londa</li>
+      <li>DarkShadow</li>
+      <li>Cute Chora</li>
+      <li>Walking Drgon</li>
+      <li>Death Storm</li>
+      <li>Fire Bloom</li>
+      <li>Sniperzz</li>
+      <li>Bitch Mafia</li>
+      <li>Brown Wolf</li>
+      <li>Innocent Ladka</li>
+      <li>Sexy Unicorn</li>
+      <li>BadBoy</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Duyurular & Haberler</h2>
+    <div class="news-box">Yeni Skyblock haritamız yayında!</div>
+    <div class="news-box">Sunucu bakımda: 10 Nisan 2025 - 22:00</div>
+  </section>
+
+  <script>
+    async function getServerStatus() {
+      const serverIP = "play.gonacraft.com";
+      const response = await fetch(`https://api.mcsrvstat.us/2/${serverIP}`);
+      const data = await response.json();
+
+      const statusText = document.getElementById("status-text");
+      if (data.online) {
+        statusText.innerHTML = `🟢 Sunucu Açık<br>Oyuncular: ${data.players.online}/${data.players.max}`;
+      } else {
+        statusText.innerHTML = "🔴 Sunucu Kapalı";
+      }
+    }
+
+    getServerStatus();
+    setInterval(getServerStatus, 60000);
+  </script>
+</body>
+</html>
